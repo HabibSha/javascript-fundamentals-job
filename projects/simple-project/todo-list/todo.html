@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <style>
       *,
       body,
@@ -131,12 +135,14 @@
       }
 
       .todo-container h4 {
-        font-size: 18px;
-        margin-bottom: 7px;
+        display: inline;
+        font-size: 20px;
+        cursor: pointer;
       }
 
       .todo-container p {
         color: rgb(158, 157, 157);
+        margin-top: 7px;
       }
 
       .delete {
@@ -145,6 +151,24 @@
         top: 20px;
         color: red;
         cursor: pointer;
+      }
+
+      .edit {
+        position: absolute;
+        right: 38px;
+        top: 20px;
+        opacity: 0;
+        color: rgb(15, 139, 255);
+        cursor: pointer;
+      }
+
+      .todo-list .todo-container:hover .edit {
+        opacity: 100;
+      }
+
+      .active {
+        text-decoration: line-through;
+        text-decoration-color: rgb(0, 255, 34);
       }
     </style>
   </head>
@@ -178,7 +202,7 @@
         </form>
         <ul class="todo-list">
           <!-- Todo items will be added here dynamically -->
-          
+
           <!-- <li class="todo-container">
             <div class="contain">
               <h4>Here is todo title</h4>
@@ -187,8 +211,8 @@
                 aperiam voluptatem officiis facere distinctio sint!
               </p>
             </div>
-            <div class="delete">Delete</div> -->
-          </li>
+            <div class="delete">Delete</div>
+          </li> -->
         </ul>
       </article>
     </section>
@@ -199,6 +223,8 @@
         const todoDesc = document.getElementById("desc");
         const todoList = document.querySelector(".todo-list");
         const form = document.getElementById("form");
+        let isEditing = false;
+        let editingTodo = null;
 
         const formValues = {
           title: "",
@@ -220,11 +246,16 @@
         form.addEventListener("submit", (event) => {
           event.preventDefault();
           if (inputValidation()) {
-            addTodoItem(formValues.title, formValues.desc);
+            if (isEditing) {
+              updateTodoItem(editingTodo, formValues.title, formValues.desc);
+              isEditing = false;
+              editingTodo = null;
+            } else {
+              addTodoItem(formValues.title, formValues.desc);
+            }
             todoTitle.value = "";
             todoDesc.value = "";
-            formValues.title = "";
-            formValues.desc = "";
+            saveTodos();
           }
         });
 
@@ -239,14 +270,67 @@
                 ${desc}
               </p>
             </div>
-            <div class="delete">Delete</div>
+            <div class="delete"><i class="fa-solid fa-trash"></i></div>
+            <div class="edit"><i class="fa-solid fa-pen"></i></div>           
           `;
+
+          const h4 = todoContainer.querySelector("h4");
+          h4.addEventListener("click", () => {
+            h4.classList.toggle("active");
+          });
+
           todoContainer
             .querySelector(".delete")
             .addEventListener("click", () => {
               todoContainer.remove();
+              saveTodos();
             });
+
+          todoContainer.querySelector(".edit").addEventListener("click", () => {
+            editTodoItem(todoContainer, title, desc);
+          });
+
           todoList.appendChild(todoContainer);
+        };
+
+        // todo save and get to the localStorage
+        const loadTodos = () => {
+          const todos = JSON.parse(localStorage.getItem("todos")) || [];
+          console.log("Loaded todos:", todos); // Debug: Log the todos being loaded
+          todos.forEach((todo) => {
+            addTodoItem(todo.title, todo.desc);
+          });
+        };
+
+        // set todos to the localStorage
+        const saveTodos = () => {
+          const todos = Array.from(
+            document.querySelectorAll(".todo-container")
+          ).map((todo) => ({
+            title: todo.querySelector("h4").innerText,
+            desc: todo.querySelector("p").innerText,
+          }));
+          console.log("Saving todos:", todos); // Debug: Log the todos being saved
+          localStorage.setItem("todos", JSON.stringify(todos));
+        };
+
+        // Load todos on initial page load
+        loadTodos();
+
+        const updateTodoItem = (todoContainer, title, desc) => {
+          const contain = todoContainer.querySelector(".contain");
+          contain.querySelector("h4").innerText = title;
+          contain.querySelector("p").innerText = desc;
+          saveTodos();
+        };
+
+        const editTodoItem = (todoContainer, title, desc) => {
+          todoTitle.value = title;
+          todoDesc.value = desc;
+          formValues.title = todoTitle;
+          formValues.desc = todoDesc;
+          isEditing = true;
+          editingTodo = todoContainer;
         };
 
         const errorMessage = (element, message) => {
