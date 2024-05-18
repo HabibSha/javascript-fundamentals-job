@@ -177,7 +177,9 @@
           <button type="submit" id="btn">Add Todo</button>
         </form>
         <ul class="todo-list">
-          <li class="todo-container">
+          <!-- Todo items will be added here dynamically -->
+          
+          <!-- <li class="todo-container">
             <div class="contain">
               <h4>Here is todo title</h4>
               <p>
@@ -185,28 +187,7 @@
                 aperiam voluptatem officiis facere distinctio sint!
               </p>
             </div>
-            <div class="delete">Delete</div>
-          </li>
-
-          <li class="todo-container">
-            <div class="contain">
-              <h4>Here is todo title</h4>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-                aperiam voluptatem officiis facere distinctio sint!
-              </p>
-            </div>
-            <div class="delete">Delete</div>
-          </li>
-          <li class="todo-container">
-            <div class="contain">
-              <h4>Here is todo title</h4>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-                aperiam voluptatem officiis facere distinctio sint!
-              </p>
-            </div>
-            <div class="delete">Delete</div>
+            <div class="delete">Delete</div> -->
           </li>
         </ul>
       </article>
@@ -239,23 +220,34 @@
         form.addEventListener("submit", (event) => {
           event.preventDefault();
           if (inputValidation()) {
-            // Only log and reset if validation passes
-            // console.log(formValues);
-            todoList.innerHTML = `<li class="todo-container">
-            <div class="contain">
-              <h4>${formValues.title}</h4>
-              <p>
-                ${formValues.desc}
-              </p>
-            </div>
-            <div class="delete">Delete</div>
-          </li>`;
+            addTodoItem(formValues.title, formValues.desc);
             todoTitle.value = "";
             todoDesc.value = "";
             formValues.title = "";
             formValues.desc = "";
           }
         });
+
+        const addTodoItem = (title, desc) => {
+          const todoContainer = document.createElement("li");
+          todoContainer.classList.add("todo-container");
+
+          todoContainer.innerHTML = `
+          <div class="contain">
+              <h4>${title}</h4>
+              <p>
+                ${desc}
+              </p>
+            </div>
+            <div class="delete">Delete</div>
+          `;
+          todoContainer
+            .querySelector(".delete")
+            .addEventListener("click", () => {
+              todoContainer.remove();
+            });
+          todoList.appendChild(todoContainer);
+        };
 
         const errorMessage = (element, message) => {
           const inputParent = element.parentElement;
