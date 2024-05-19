@@ -192,3 +192,64 @@ String.prototype.toJadenCase = function () {
     return x.toUpperCase();
   });
 };
+
+//NO:6 Is a number prime?
+// Define a function that takes an integer argument and returns a logical value true or false depending on if the integer is a prime.
+// Per Wikipedia, a prime number ( or a prime ) is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+
+// Requirements
+// You can assume you will be given an integer input.
+// You can not assume that the integer will be only positive. You may be given negative numbers as well ( or 0 ).
+// NOTE on performance: There are no fancy optimizations required, but still the most trivial solutions might time out. Numbers go up to 2^31 ( or similar, depending on language ). Looping all the way up to n, or n/2, will be too slow.
+
+// Example
+// is_prime(1)  /* false */
+// is_prime(2)  /* true  */
+// is_prime(-1) /* false */
+
+// Solution:
+function isPrime(num) {
+  if (num < 2) return false;
+  const limit = Math.sqrt(num);
+  for (let i = 2; i <= limit; ++i) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// Different way 1---
+function isPrime(n) {
+  if (n <= 1) return false;
+  if (n <= 3 || n == 5 || n == 7 || n == 11) return true;
+  if (n % 2 === 0 || n % 3 === 0) return false;
+  for (var i = 5; i <= Math.pow(n, 0.5); i += 6)
+    if (n % i === 0 || n % (i + 2) === 0) return false;
+  return true;
+}
+
+// 2 ---
+function isPrime(num) {
+  let even = 2;
+  while (even * even <= num && num % even != 0) {
+    even++;
+  }
+  return even * even > num && num > 1;
+}
+
+// 3----
+const isPrime = (num) => {
+  for (let i = 2, s = Math.sqrt(num); i <= s; i++)
+    if (num % i === 0) return false;
+  return num > 1;
+};
+
+// 4-----
+const isPrime = (a, b = 2) => {
+  while (b * b <= a) {
+    if (a % b) ++b;
+    else return !1;
+  }
+  return a > 1;
+};
