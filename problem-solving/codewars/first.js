@@ -253,3 +253,75 @@ const isPrime = (a, b = 2) => {
   }
   return a > 1;
 };
+
+// NO:7 Human Readable Time
+// Write a function, which takes a non-negative integer (seconds) as input and returns the time in a human-readable format (HH:MM:SS)
+
+// HH = hours, padded to 2 digits, range: 00 - 99
+// MM = minutes, padded to 2 digits, range: 00 - 59
+// SS = seconds, padded to 2 digits, range: 00 - 59
+
+// The maximum time never exceeds 359999 (99:59:59)
+// You can find some examples in the test fixtures.
+
+// Solution:
+function humanReadable(seconds) {
+  // Calculate hours
+  const hours = Math.floor(seconds / 3600);
+  // Calculate minutes
+  const minutes = Math.floor((seconds % 3600) / 60);
+  // Calculate seconds
+  const secs = (seconds % 3600) % 60;
+
+  // Format hours, minutes, and seconds to be two digits
+  const formattedHours = String(hours).padStart(2, "0");
+  const formattedMinutes = String(minutes).padStart(2, "0");
+  const formattedSeconds = String(secs).padStart(2, "0");
+
+  // Combine and return the formatted time string
+  return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+}
+
+// Different way ---1
+function humanReadable(seconds) {
+  var pad = function (x) {
+    return x < 10 ? "0" + x : x;
+  };
+  return (
+    pad(parseInt(seconds / (60 * 60))) +
+    ":" +
+    pad(parseInt((seconds / 60) % 60)) +
+    ":" +
+    pad(seconds % 60)
+  );
+}
+
+// Different way ---2
+function humanReadable(seconds) {
+  var hours = parseInt(seconds / 3600);
+  var minutes = parseInt(seconds / 60) % 60;
+  var seconds = seconds % 60;
+
+  var pad = function (val) {
+    return val < 10 ? "0" + val : val;
+  };
+
+  return pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+}
+
+// Different way ---3
+function humanReadable(seconds) {
+  return [seconds / 3600, (seconds % 3600) / 60, seconds % 60]
+    .map(function (v) {
+      v = Math.floor(v).toString();
+      return v.length == 1 ? "0" + v : v;
+    })
+    .join(":");
+}
+
+// Different way ---4
+function humanReadable(seconds) {
+  return [(seconds / 3600) | 0, (seconds % 3600) / 60, (seconds % 3600) % 60]
+    .map((n) => ("0" + (("" + n) | 0)).substr(-2))
+    .join(":");
+}
