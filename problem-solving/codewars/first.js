@@ -325,3 +325,71 @@ function humanReadable(seconds) {
     .map((n) => ("0" + (("" + n) | 0)).substr(-2))
     .join(":");
 }
+
+// NO:8 Take a Ten Minutes Walk
+
+// You live in the city of Cartesia where all roads are laid out in a perfect grid. You arrived ten minutes too early to an appointment, so you decided to take the opportunity to go for a short walk. The city provides its citizens with a Walk Generating App on their phones -- everytime you press the button it sends you an array of one-letter strings representing directions to walk (eg. ['n', 's', 'w', 'e']). You always walk only a single block for each letter (direction) and you know it takes you one minute to traverse one city block, so create a function that will return true if the walk the app gives you will take you exactly ten minutes (you don't want to be early or late!) and will, of course, return you to your starting point. Return false otherwise.
+// Note: you will always receive a valid array containing a random assortment of direction letters ('n', 's', 'e', or 'w' only). It will never give you an empty array (that's not a walk, that's standing still!).
+
+//some test cases for you...
+// assert.isTrue(isValidWalk(['n','s','n','s','n','s','n','s','n','s']), 'should return true');
+// assert.isFalse(isValidWalk(['w','e','w','e','w','e','w','e','w','e','w','e']), 'should return false');
+// assert.isFalse(isValidWalk(['w']), 'should return false');
+// assert.isFalse(isValidWalk(['n','n','n','s','n','s','n','s','n','s']), 'should return false');
+
+// Solution:
+function isValidWalk(walk) {
+  if (walk.length !== 10) {
+    return false;
+  }
+
+  let northSouth = 0;
+  let eastWest = 0;
+
+  for (const direction of walk) {
+    if (direction === "n") {
+      northSouth += 1;
+    } else if (direction === "s") {
+      northSouth -= 1;
+    } else if (direction === "e") {
+      eastWest += 1;
+    } else if (direction === "w") {
+      eastWest -= 1;
+    }
+  }
+
+  return northSouth === 0 && eastWest === 0;
+}
+
+// Example Usage:
+console.log(isValidWalk(["n", "s", "n", "s", "n", "s", "n", "s", "n", "s"])); // true
+console.log(
+  isValidWalk(["w", "e", "w", "e", "w", "e", "w", "e", "w", "e", "w", "e"])
+); // false
+console.log(isValidWalk(["n", "n", "n", "s", "s", "s", "e", "e", "w", "w"])); // true
+console.log(isValidWalk(["n", "s", "e", "w", "n", "s", "e", "w", "n", "e"])); // false
+
+// To determine whether a given walk is valid (i.e., it takes exactly 10 minutes and returns you to the starting point), you need to ensure two conditions are met:
+
+// 1. The walk has exactly 10 directions.
+// 2. The net effect of the walk is zero displacement in both the north-south and east-west directions.
+// Here is the step-by-step implementation of the isValidWalk function:
+
+// 1. Check the Length: First, ensure that the length of the walk is exactly 10. If not, immediately return false.
+// 2. Calculate Displacement: Use counters to keep track of the net displacement in the north-south and east-west directions.
+
+// Explanation:
+// 1. Length Check: if (walk.length !== 10) { return false; }
+// This ensures the walk takes exactly 10 minutes.
+
+// 2. Counters Initialization:
+// let northSouth = 0;
+// let eastWest = 0;
+
+// 3. Loop Through Directions:
+// For each direction in the walk array:
+// Increment or decrement the northSouth or eastWest counter accordingly.
+
+// 4. Check Net Displacement:
+// return northSouth === 0 && eastWest === 0;
+// If both counters are zero, it means you have returned to the starting point.
