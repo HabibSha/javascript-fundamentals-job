@@ -393,3 +393,86 @@ console.log(isValidWalk(["n", "s", "e", "w", "n", "s", "e", "w", "n", "e"])); //
 // 4. Check Net Displacement:
 // return northSouth === 0 && eastWest === 0;
 // If both counters are zero, it means you have returned to the starting point.
+
+// NO:9 - Delete occurrences of an element if it occurs more than n times
+
+// Enough is enough!
+// Alice and Bob were on a holiday. Both of them took many pictures of the places they've been, and now they want to show Charlie their entire collection. However, Charlie doesn't like these sessions, since the motif usually repeats. He isn't fond of seeing the Eiffel tower 40 times.
+// He tells them that he will only sit for the session if they show the same motif at most N times. Luckily, Alice and Bob are able to encode the motif as a number. Can you help them to remove numbers such that their list contains each number only up to N times, without changing the order?
+
+// Task
+// Given a list and a number, create a new list that contains each number of list at most N times, without reordering.
+// For example if the input number is 2, and the input list is [1,2,3,1,2,1,2,3], you take [1,2,3,1,2], drop the next [1,2] since this would lead to 1 and 2 being in the result 3 times, and then take 3, which leads to [1,2,3,1,2,3].
+// With list [20,37,20,21] and number 1, the result would be [20,37,21].
+
+// Solution:
+// Object to keep track of the count of each element
+let counts = {};
+// Result array to store the final elements
+let result = [];
+
+// Iterate over each element in the input array
+for (let i = 0; i < arr.length; i++) {
+  let current = arr[i];
+  // If the current element is not yet in the counts object, initialize it
+  if (!counts[current]) {
+    counts[current] = 0;
+  }
+  // If the count of the current element is less than n, add it to the result
+  if (counts[current] < n) {
+    result.push(current);
+    counts[current]++; // Increment the count for this element
+  }
+}
+
+return result; // Return the result array
+
+// Different way --1
+function deleteNth(arr, x) {
+  var cache = {};
+  return arr.filter(function (n) {
+    cache[n] = (cache[n] || 0) + 1;
+    return cache[n] <= x;
+  });
+}
+
+// Different way --2
+const deleteNth = (a, x) => {
+  let m = {};
+  return a.filter((v) => (m[v] = m[v] + 1 || 1) <= x);
+};
+
+// Different way --3
+function deleteNth(arr, x) {
+  var obj = {};
+  return arr.filter(function (number) {
+    obj[number] = obj[number] ? obj[number] + 1 : 1;
+    return obj[number] <= x;
+  });
+}
+
+// Different way --4
+function deleteNth(arr, x) {
+  return arr.reduce(function (a, v) {
+    return count(a, v) < x ? a.concat(v) : a;
+  }, []);
+}
+
+function count(arr, z) {
+  return arr.filter(function (q) {
+    return z == q;
+  }).length;
+}
+
+// Different way --5
+function deleteNth(arr, x) {
+  var count = {};
+  return arr.filter(function (a) {
+    count[a] = ~~count[a] + 1;
+    return count[a] <= x;
+  });
+}
+
+// Different way --6
+const deleteNth = (arr, x) =>
+  arr.filter((e, i) => arr.slice(0, i).filter((f) => f == e).length < x);
