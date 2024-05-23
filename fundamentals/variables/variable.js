@@ -1,3 +1,4 @@
+// variable
 let names = ["Abu Rayhan", "Simon Hossain", "Rehana Miti", "Leon Demario"];
 let index = -1; // we can also write index = 0; that would 'abu rayhan'
 let name = names[++index]; // we can write names[index] if we wrote index = 0
@@ -11,3 +12,14 @@ setInterval(() => {
     index = 0;
   }
 }, 1000);
+
+// condition
+if (hasMoney) {
+  purchasePhone();
+}
+
+if (!hasMoney) {
+  noPhone();
+} else {
+  purchasePhone();
+}
