@@ -652,3 +652,121 @@ function incrementString(strng) {
 
 // Different way ---7
 const incrementString = (strng) => strng.replace(/[0-8]?9*$/, (val) => ++val);
+
+// NO 11 Pyramid Slide Down
+
+// Lyrics...
+// Pyramids are amazing! Both in architectural and mathematical sense. If you have a computer, you can mess with pyramids even if you are not in Egypt at the time. For example, let's consider the following problem. Imagine that you have a pyramid built of numbers, like this one here:
+
+// /3/
+// \7\ 4
+// 2 \4\ 6
+//  8 5 \9\ 3
+
+// Here comes the task...
+// Let's say that the 'slide down' is the maximum sum of consecutive numbers from the top to the bottom of the pyramid. As you can see, the longest 'slide down' is 3 + 7 + 4 + 9 = 23
+
+// Your task is to write a function that takes a pyramid representation as an argument and returns its largest 'slide down'. For example:
+
+// * With the input `[[3], [7, 4], [2, 4, 6], [8, 5, 9, 3]]`
+// * Your function should return `23`.
+
+// By the way...
+// My tests include some extraordinarily high pyramids so as you can guess, brute-force method is a bad idea unless you have a few centuries to waste. You must come up with something more clever than that.
+
+// Solution:
+// Start from the second-to-last row and work upwards
+for (let row = pyramid.length - 2; row >= 0; row--) {
+  for (let col = 0; col < pyramid[row].length; col++) {
+    // Calculate the maximum slide down sum for each element
+    pyramid[row][col] += Math.max(
+      pyramid[row + 1][col],
+      pyramid[row + 1][col + 1]
+    );
+  }
+}
+// The top element will contain the maximum sum
+return pyramid[0][0];
+
+// Example usage
+console.log(longestSlideDown([[3], [7, 4], [2, 4, 6], [8, 5, 9, 3]])); // Output: 23
+
+// Explanation of the Code:
+// Outer Loop (for (let row = pyramid.length - 2; row >= 0; row--)):
+
+// This loop starts from the second-to-last row and moves upwards to the first row.
+// Inner Loop (for (let col = 0; col < pyramid[row].length; col++)):
+
+// For each element in the current row, it calculates the maximum slide down sum by considering the two elements directly below it in the next row.
+// Update the Element (pyramid[row][col] += Math.max(pyramid[row + 1][col], pyramid[row + 1][col + 1])):
+
+// This line updates the current element to be the sum of itself and the maximum of the two elements directly below it.
+// Return the Result (return pyramid[0][0]):
+
+// After processing all rows, the top element of the pyramid will contain the maximum sum of the slide down.
+// This approach has a time complexity of O(n^2), where n is the number of rows in the pyramid, making it efficient and suitable for large pyramids.
+
+// Different way ---1
+function longestSlideDown(pyramid) {
+  return pyramid.reduceRight((last, current) =>
+    current.map((v, i) => v + Math.max(last[i], last[i + 1]))
+  )[0];
+}
+
+// Different way ---2
+function longestSlideDown(pyramid) {
+  for (var i = pyramid.length - 2; i > -1; i--) {
+    for (var j = 0; j < pyramid[i].length; j++) {
+      pyramid[i][j] += Math.max(pyramid[i + 1][j], pyramid[i + 1][j + 1]);
+    }
+  }
+  return pyramid[0][0];
+}
+
+// Different way ---3
+const longestSlideDown = (pyramid) =>
+  pyramid.reduceRight((lower, current) =>
+    current.map((v, i) =>
+      lower[i] > lower[i + 1] ? v + lower[i] : v + lower[i + 1]
+    )
+  )[0];
+
+// Different way ---4
+function longestSlideDown(pyramid) {
+  pyramid = pyramid.slice(0);
+  let i = pyramid.length - 1;
+  while (i--)
+    for (let j = 0; j <= i; ++j)
+      pyramid[i][j] += Math.max(pyramid[i + 1][j], pyramid[i + 1][j + 1]);
+  return pyramid[0][0];
+}
+
+// Different way ---5
+longestSlideDown = (pyramid) =>
+  pyramid
+    .reverse()
+    .reduce((x, y) =>
+      y.map((v, i) => (x[i] > x[i + 1] ? x[i] : x[i + 1]) + v)
+    )[0];
+
+// Different way ---6
+const longestSlideDown = (pyramid) =>
+  pyramid.reduceRight((pre, val) =>
+    val.map((val, idx) => val + Math.max(...pre.slice(idx, idx + 2)))
+  )[0];
+
+// Different way ---7
+const longestSlideDown = (pyr, { max } = Math) =>
+  max(
+    ...pyr.reduce((acc, row) =>
+      row.map((num, idx) => num + max(acc[idx - 1] || 0, acc[idx] || 0))
+    )
+  );
+
+// Different way ---8
+function longestSlideDown(pyramid) {
+  var res = pyramid.pop();
+  while (pyramid.length > 0)
+    res = pyramid.pop().map((x, i) => x + Math.max(res[i], res[i + 1]));
+  return res[0];
+}
