@@ -770,3 +770,71 @@ function longestSlideDown(pyramid) {
     res = pyramid.pop().map((x, i) => x + Math.max(res[i], res[i + 1]));
   return res[0];
 }
+
+// NO 12 Extract the domain name from a URL
+
+// Write a function that when given a URL as a string, parses out just the domain name and returns it as a string. For example:
+// * url = "http://github.com/carbonfive/raygun" -> domain name = "github"
+// * url = "http://www.zombie-bites.com"         -> domain name = "zombie-bites"
+// * url = "https://www.cnet.com"                -> domain name = cnet"
+
+// Solution:
+function domainName(url) {
+  // Use a regular expression to match and extract the domain name
+  const domain = url.match(/(?:https?:\/\/)?(?:www\.)?([^\/]+)/);
+  // Extract the domain name part without subdomain or protocol
+  return domain[1].split(".")[0];
+}
+
+// Example usages:
+console.log(domainName("http://github.com/carbonfive/raygun")); // Output: "github"
+console.log(domainName("http://www.zombie-bites.com")); // Output: "zombie-bites"
+console.log(domainName("https://www.cnet.com")); // Output: "cnet"
+
+// Explanation:
+// 1. Regular Expression:
+
+// (?:https?:\/\/)?: Non-capturing group to match the protocol (http:// or https://), if it exists.
+// (?:www\.)?: Non-capturing group to match www. if it exists.
+// ([^\/]+): Capturing group to match the domain name part until the first / or end of string.
+
+// 2. Extracting the Domain Name:
+// The domain name is extracted using the regular expression match. The result is an array where the first element is the full match and the second element is the captured domain name part.
+// Split the captured domain name on . and take the first part to get the primary domain name.
+
+// Different way ---1
+function domainName(url) {
+  url = url.replace("https://", "");
+  url = url.replace("http://", "");
+  url = url.replace("www.", "");
+  return url.split(".")[0];
+}
+
+// Different way ---2
+function domainName(url) {
+  return url.match(/(?:http(?:s)?:\/\/)?(?:w{3}\.)?([^\.]+)/i)[1];
+}
+
+// Different way ---3
+function domainName(url) {
+  return url.replace(/.+\/\/|www.|\..+/g, "");
+}
+
+// Different way ---4
+function domainName(url) {
+  return url.replace(/(https?:\/\/)?(www\.)?/, "").split(".")[0];
+}
+
+// Different way ---5
+const domainName = (url) => url.replace(/.*\/\/|www.|\..*/g, ``);
+
+// Different way ---6
+function domainName(url) {
+  url = url
+    .toString()
+    .replace("https://", "")
+    .replace("http://", "")
+    .replace("www.", "");
+
+  return url.split(".")[0];
+}
