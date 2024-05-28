@@ -1041,3 +1041,37 @@ class PaginationHelper {
     return Math.floor(itemIndex / this.itemsPerPage);
   }
 }
+
+// NO 14 Moving Zeros To The End
+
+// Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
+
+// moveZeros([false,1,0,1,2,0,1,3,"a"]) // returns[false,1,1,2,1,3,"a",0,0]
+
+// Solution:
+function moveZeros(arr) {
+  let insertPos = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== 0) {
+      arr[insertPos] = arr[i];
+      insertPos++;
+    }
+  }
+
+  while (insertPos < arr.length) {
+    arr[insertPos] = 0;
+    insertPos++;
+  }
+
+  return arr;
+}
+
+// Example usage:
+console.log(moveZeros([false, 1, 0, 1, 2, 0, 1, 3, "a"])); // [false, 1, 1, 2, 1, 3, "a", 0, 0]
+
+// Different way ---1
+// Different way ---2
+// Different way ---3
+// Different way ---4
+// Different way ---5
