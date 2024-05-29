@@ -1075,3 +1075,147 @@ console.log(moveZeros([false, 1, 0, 1, 2, 0, 1, 3, "a"])); // [false, 1, 1, 2, 1
 // Different way ---3
 // Different way ---4
 // Different way ---5
+
+// NO 15
+
+// Consider a sequence u where u is defined as follows:
+
+// 1. The number u(0) = 1 is the first one in u.
+// 2. For each x in u, then y = 2 * x + 1 and z = 3 * x + 1 must be in u too.
+// 3. There are no other numbers in u.
+// Ex: u = [1, 3, 4, 7, 9, 10, 13, 15, 19, 21, 22, 27, ...]
+
+// 1 gives 3 and 4, then 3 gives 7 and 10, 4 gives 9 and 13, then 7 gives 15 and 22 and so on...
+
+// Task:
+// Given parameter n the function dbl_linear (or dblLinear...) returns the element u(n) of the ordered (with <) sequence u (so, there are no duplicates).
+
+// Example:
+// dbl_linear(10) should return 22
+
+// Note:
+// Focus attention on efficiency
+
+// Solution:
+
+// 1. Start with u(0) = 1.
+// 2. For each x in u, add 2 * x + 1 and 3 * x + 1 to u.
+// We need an efficient way to generate and sort these numbers while avoiding duplicates.
+
+// A common efficient approach for generating such sequences is to use a breadth-first search (BFS) technique, using two separate queues to manage the operations 2 * x + 1 and 3 * x + 1.
+
+function dblLinear(n) {
+  let u = [1]; // the sequence starts with 1
+  let i = 0,
+    j = 0;
+
+  // Generate elements of the sequence until we have n+1 elements
+  while (u.length <= n) {
+    let nextY = 2 * u[i] + 1;
+    let nextZ = 3 * u[j] + 1;
+
+    // Determine the next element to add
+    if (nextY < nextZ) {
+      u.push(nextY);
+      i++;
+    } else if (nextY > nextZ) {
+      u.push(nextZ);
+      j++;
+    } else {
+      // if both are equal, add only once and increment both i and j
+      u.push(nextY);
+      i++;
+      j++;
+    }
+  }
+
+  // Return the nth element in the sequence
+  return u[n];
+}
+
+// Example usage:
+console.log(dblLinear(10)); // Output: 22
+
+// Different way ---1
+function dblLinear(n) {
+  var ai = 0,
+    bi = 0,
+    eq = 0;
+  var sequence = [1];
+  while (ai + bi < n + eq) {
+    var y = 2 * sequence[ai] + 1;
+    var z = 3 * sequence[bi] + 1;
+    if (y < z) {
+      sequence.push(y);
+      ai++;
+    } else if (y > z) {
+      sequence.push(z);
+      bi++;
+    } else {
+      sequence.push(y);
+      ai++;
+      bi++;
+      eq++;
+    }
+  }
+  return sequence.pop();
+}
+
+// Different way ---2
+function dblLinear(n) {
+  var u = [1],
+    pt2 = 0,
+    pt3 = 0; //two pointer
+
+  for (var i = 1; i <= n; i++) {
+    u[i] = Math.min(2 * u[pt2] + 1, 3 * u[pt3] + 1);
+    if (u[i] == 2 * u[pt2] + 1) pt2++;
+    if (u[i] == 3 * u[pt3] + 1) pt3++;
+  }
+
+  return u[n];
+}
+
+// Different way ---3
+function dblLinear(n) {
+  let x = 1;
+  let y = [];
+  let z = [];
+  for (let i = 0; i < n; i += 1) {
+    y.push(x * 2 + 1);
+    z.push(x * 3 + 1);
+
+    let min = Math.min(y[0], z[0]);
+    if (min === y[0]) x = y.shift();
+    if (min === z[0]) x = z.shift();
+  }
+  return x;
+}
+
+// Different way ---4
+function dblLinear(n) {
+  var h = [];
+  var x2 = 1,
+    x3 = 1;
+  var i = 0,
+    j = 0;
+  for (var index = 0; index < n + 1; index++) {
+    h[index] = x2 < x3 ? x2 : x3;
+    if (h[index] == x2) x2 = 2 * h[i++] + 1;
+    if (h[index] == x3) x3 = 3 * h[j++] + 1;
+  }
+  return h[n];
+}
+
+// Different way ---5
+const dblLinear = (n) => {
+  const u = [1];
+  let a = 0,
+    b = 0;
+  while (u.length <= n) {
+    let x = 2 * u[a] + 1;
+    let y = 3 * u[b] + 1;
+    x < y ? (u.push(x), a++) : x > y ? (u.push(y), b++) : (u.push(x), a++, b++);
+  }
+  return u[n];
+};
