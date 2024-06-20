@@ -4,13 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="./output.css" rel="stylesheet" />
+    <link href="../output.css" rel="stylesheet" />
   </head>
   <body>
     <section class="w-full h-screen bg-gray-500">
-      <article class="w-3/6 mx-auto">
-        <h1>hello</h1>
+      <article id="movieListId" class="bg-slate-600 w-3/6 mx-auto">
+        <h1 class="text-center text-3xl py-3 font-semibold">Movie Mania</h1>
+        <div class="grid grid-cols-3">
+          <div id="idTotalMovie">
+            <p>Total Movie</p>
+          </div>
+          <div id="idAvgRating">
+            <p>Avg Rating</p>
+          </div>
+          <div id="idTotalReviews">
+            <p>Total Reviews</p>
+          </div>
+        </div>
+        <h2 class="text-center text-2xl py-3 font-semibold">Reviews</h2>
+        <ul>
+          <li class="bg-orange-300 border-[1px] border-blue-800">
+            <p>Movie name</p>
+            <p>review</p>
+            <p>by</p>
+          </li>
+          <li class="bg-orange-300 border-[1px] border-blue-800">
+            <p>Movie name</p>
+            <p>review</p>
+            <p>by</p>
+          </li>
+        </ul>
       </article>
     </section>
+
+    <script type="module" src="index.js"></script>
   </body>
 </html>
