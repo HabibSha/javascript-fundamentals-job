@@ -1,0 +1,50 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.otp-box-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.otp-boxes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.otp-boxes .otp-box {
+  border: none;
+  width: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 3px cyan;
+}
+
+.otp-generate {
+  font-size: 22px;
+  margin-top: 28px;
+  color: blueviolet;
+}
+
+.otp-result.success {
+  font-size: 18px;
+  color: green;
+  border: 1px solid green;
+  padding: 8px;
+}
+
+.otp-result.fail {
+  font-size: 18px;
+  color: red;
+  border: 1px solid red;
+  padding: 8px;
+}
