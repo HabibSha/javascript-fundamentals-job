@@ -53,6 +53,7 @@ function validateOTP() {
     typedNumber = typedNumber + elem.value;
   });
 
+  // logging generatedOTP and typedNumber
   console.log(generatedOTP, typedNumber);
   const result = generatedOTP === parseInt(typedNumber, 10);
   const resultElem = document.getElementById("otp-result-id");
