@@ -28,3 +28,21 @@ for (let values of array) {
   console.log(values);
   // we will get all the values of object
 }
+
+// TODO: Examples
+const myObj = {
+  name: "John",
+  age: 30,
+  cars: [
+    { name: "Ford", models: ["Fiesta", "Focus", "Mustang"] },
+    { name: "BMW", models: ["320", "X3", "X5"] },
+    { name: "Fiat", models: ["500", "Panda"] },
+  ],
+};
+// To access arrays inside arrays, use a for-in loop for each array:
+for (let i in myObj.cars) {
+  console.log("Name: " + myObj.cars[i].name);
+  for (let j in myObj.cars[i].models) {
+    console.log("Models: " + myObj.cars[i].models[j]);
+  }
+}
