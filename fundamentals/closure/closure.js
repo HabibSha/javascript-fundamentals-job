@@ -39,7 +39,7 @@ function outer2() {
 const result = outer2();
 // console.log(result);
 // [Function: inner2]
-//  here result variable is a function because the inner2 function is inside the result. if we execute the result we will get "I am inner2".
+// the result variable is a function because the inner2 function is inside the result. if we execute the result we will get "I am inner2".
 result();
 
 // And the last way we can execute the function by using IIFE(Immediately Invokable Function Execution)
@@ -50,7 +50,7 @@ result();
 })();
 
 /**
- * Now closure: we can describe closure with our examples on above. when a child function like inner function can access everything on it's parent function like outer function not only access but also modify or change the values or variables of parent function but the parent function cannot access any of values and variables on it's child function. A child function can capture all the variables and values it's parent's function after parent function execute or dead, the child function capture it unless it's execute itself, it is called closure.
+ * Now closure: we can describe closure with our examples with above examples. when a child function like inner function can access everything on it's parent function like outer function not only access but also modify or change the values or variables of parent function but the parent function cannot access any of values and variables on it's child function. A child function can capture all the variables and values it's parent's function after parent function execute or dead, the child function capture it unless it's execute itself, it is called closure.
  */
 // Example 1
 function parent(x) {

@@ -5,6 +5,7 @@
 // boolean
 // null
 // undefine
+// bigInt
 
 // TODO: Non primitive
 // object
