@@ -58,8 +58,31 @@ console.log(primeNum(4));
 };*/
 
 // Odd numbers
-for (let i = 1; i <= 100; i++) {
-  if (i % 2 !== 0) {
-    console.log(i);
-  }
+// for (let i = 1; i <= 100; i++) {
+//   if (i % 2 !== 0) {
+//     console.log(i);
+//   }
+// }
+
+// increment value and getValue
+function createFunc() {
+  let count = 0;
+
+  const myObj = {
+    increment: function () {
+      return count++;
+    },
+
+    getValue: function () {
+      return count;
+    },
+  };
+  return myObj;
 }
+
+const calc = createFunc();
+console.log(calc.getValue());
+console.log(calc.increment());
+console.log(calc.getValue());
+console.log(calc.increment());
+console.log(calc.getValue());
