@@ -65,24 +65,31 @@ console.log(primeNum(4));
 // }
 
 // increment value and getValue
-function createFunc() {
-  let count = 0;
+// function createFunc() {
+//   let count = 0;
 
-  const myObj = {
-    increment: function () {
-      return count++;
-    },
+//   const myObj = {
+//     increment: function () {
+//       return count++;
+//     },
 
-    getValue: function () {
-      return count;
-    },
-  };
-  return myObj;
+//     getValue: function () {
+//       return count;
+//     },
+//   };
+//   return myObj;
+// }
+
+// const calc = createFunc();
+// console.log(calc.getValue());
+// console.log(calc.increment());
+// console.log(calc.getValue());
+// console.log(calc.increment());
+// console.log(calc.getValue());
+
+// greeting
+function greetFunc(name) {
+  return `Hello, ${name}`;
 }
 
-const calc = createFunc();
-console.log(calc.getValue());
-console.log(calc.increment());
-console.log(calc.getValue());
-console.log(calc.increment());
-console.log(calc.getValue());
+console.log(greetFunc("Alice"));
