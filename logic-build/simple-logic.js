@@ -88,8 +88,16 @@ console.log(primeNum(4));
 // console.log(calc.getValue());
 
 // greeting
-function greetFunc(name) {
-  return `Hello, ${name}`;
-}
+// function greetFunc(name) {
+//   return `Hello, ${name}`;
+// }
 
-console.log(greetFunc("Alice"));
+// console.log(greetFunc("Alice"));
+
+// we can replace string to another string by using replace method and regex
+const sentence =
+  "React is a javascript Framework. React is a powerful Framework and most useful Framework.";
+
+const correctionSentence = sentence.replace(/Framework/g, "Library");
+// we use RexEx because of in the sentence the Framework is more than one. if we have one work of Framework then we don't need to use regex. We have more than one Framework word in the sentence that's why we use RegEx to replace all the word of Framework.
+console.log(correctionSentence); // React is a javascript Library. React is a powerful Library and most useful Library.
