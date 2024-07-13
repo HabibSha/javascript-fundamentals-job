@@ -94,10 +94,27 @@ console.log(primeNum(4));
 
 // console.log(greetFunc("Alice"));
 
-// we can replace string to another string by using replace method and regex
+// we can replace string to another string by using replace() method.
 const sentence =
   "React is a javascript Framework. React is a powerful Framework and most useful Framework.";
 
 const correctionSentence = sentence.replace(/Framework/g, "Library");
 // we use RexEx because of in the sentence the Framework is more than one. if we have one work of Framework then we don't need to use regex. We have more than one Framework word in the sentence that's why we use RegEx to replace all the word of Framework.
 console.log(correctionSentence); // React is a javascript Library. React is a powerful Library and most useful Library.
+
+// Intersection of arrays
+const arrayA = [3, 4, 6, 7, 8, 11];
+const arrayB = [8, 9, 3, 10, 7, 1];
+
+function intersectionArr(arr1, arr2) {
+  return arr1.filter((value) => arr2.includes(value));
+}
+
+const result = intersectionArr(arrayA, arrayB);
+console.log(result);
+
+// Remove duplicates from array
+// we can use the Set() method to remove duplicate value because of Set() method remove duplicates value byDefault and return new array.
+// const dupArr = [1, 4, 5, 4, 1, 4, 3, 6, 5];
+// const removeDup = (arr = new Set(...dupArr, arr));
+// console.log(removeDup);
