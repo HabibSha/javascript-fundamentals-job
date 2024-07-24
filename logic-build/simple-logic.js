@@ -11,24 +11,24 @@
 // Prime Number
 // Given a number N, verify if N is prime or not. Return true if N is prime, else return false.
 // Solution:
-const primeNum = function (N) {
-  if (N < 2 || N % 2 === 0) {
-    return false;
-  }
+// const primeNum = function (N) {
+//   if (N < 2 || N % 2 === 0) {
+//     return false;
+//   }
 
-  if (N === 2) {
-    return true;
-  }
+//   if (N === 2) {
+//     return true;
+//   }
 
-  for (i = 3; i * i <= N; i += 2) {
-    if (N % i === 0) {
-      return false;
-    }
-  }
-  return true;
-};
+//   for (i = 3; i * i <= N; i += 2) {
+//     if (N % i === 0) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
 
-console.log(primeNum(4));
+// console.log(primeNum(4));
 
 /**var isPrime = function(N) {
   // If N is less than 2, it's not prime
@@ -103,18 +103,116 @@ const correctionSentence = sentence.replace(/Framework/g, "Library");
 console.log(correctionSentence); // React is a javascript Library. React is a powerful Library and most useful Library.
 
 // Intersection of arrays
-const arrayA = [3, 4, 6, 7, 8, 11];
-const arrayB = [8, 9, 3, 10, 7, 1];
+// const arrayA = [3, 4, 6, 7, 8, 11];
+// const arrayB = [8, 9, 3, 10, 7, 1];
 
-function intersectionArr(arr1, arr2) {
-  return arr1.filter((value) => arr2.includes(value));
-}
+// function intersectionArr(arr1, arr2) {
+//   return arr1.filter((value) => arr2.includes(value));
+// }
 
-const result = intersectionArr(arrayA, arrayB);
-console.log(result);
+// const result = intersectionArr(arrayA, arrayB);
+// console.log(result);
 
 // Remove duplicates from array
 // we can use the Set() method to remove duplicate value because of Set() method remove duplicates value byDefault and return new array.
 // const dupArr = [1, 4, 5, 4, 1, 4, 3, 6, 5];
 // const removeDup = (arr = new Set(...dupArr, arr));
 // console.log(removeDup);
+
+// Create a custom map function with higher order function
+// const countries = ["Lebanon", "Palestine", "Indonesia", "Bangladesh"];
+
+// function customMapFunc(arr, fn) {
+//   const newArray = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     newArray.push(fn(arr[i]));
+//   }
+//   return newArray;
+// }
+
+// const fn = function (country) {
+//   console.log(country);
+//   console.log(country.length);
+// };
+
+// customMapFunc(countries, fn);
+
+// Closure practice
+// function parentFunc() {
+//   const parentWealth = 50000;
+
+//   return function () {
+//     const childWealth = 59000;
+//     if (parentWealth > childWealth) {
+//       console.log("I am giving you all of my money");
+//     } else {
+//       console.log("You have enough money for living");
+//     }
+//   };
+// }
+
+// const childFunc = parentFunc();
+// childFunc();
+
+// Memoization practice
+// function multiplyNumbers(num) {
+//   return num * 10;
+// }
+
+// function memoFunc(func) {
+//   let cache = {};
+
+//   return function (x) {
+//     console.log(cache);
+
+//     if (cache[x]) {
+//       console.log("Result from cache");
+//       return cache[x];
+//     } else {
+//       console.log("Calculating the result");
+//       const result = func(x);
+//       cache[x] = result;
+//       return result;
+//     }
+//   };
+// }
+
+// const calculate = memoFunc(multiplyNumbers);
+// console.log(calculate(12));
+// console.log(calculate(12));
+
+// Memoization practice - 2 with spread operator. if user give more than one arguments.
+function multiplyNumbers(...nums) {
+  return nums.reduce((multiply, currValue) => multiply * currValue);
+}
+
+// console.log(multiplyNumbers(10, 20, 30));
+
+function memoFunc(func) {
+  let cache = {};
+
+  return function (...x) {
+    const key = JSON.stringify(x);
+    console.log(cache);
+
+    if (cache[key]) {
+      console.log("Result from cache");
+      return cache[key];
+    } else {
+      console.log("Calculating the result");
+      const result = func(...x);
+      cache[key] = result;
+      return result;
+    }
+  };
+}
+
+const calculate2 = memoFunc(multiplyNumbers);
+console.log(calculate2(5, 2, 6));
+console.log(calculate2(5, 2, 6));
+
+// reverse string
+const strName = "Bangladesh";
+const divide = strName.split("");
+const result = divide.reverse();
+console.log(result.join(""));
