@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payoneer Bank</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="authentication-area">
+      <article class="parent-div">
+        <h1>Authentication Form</h1>
+        <form>
+          <input
+            type="text"
+            name="username"
+            class="input-auth"
+            required
+            placeholder="Username"
+          />
+          <br />
+          <input
+            type="password"
+            name="password"
+            class="input-auth"
+            required
+            placeholder="Password"
+          />
+          <br />
+          <button type="submit" id="submit">Submit</button>
+        </form>
+      </article>
+    </section>
+
+    <!-- Account Status -->
+    <section class="transaction-area">
+      <div class="parent-div">
+        <h1>Pyoneer Bank</h1>
+        <article class="account-details">
+          <div class="info-body" id="deposit-amount">
+            <h3>Deposit Amount</h3>
+            <p>$ <span id="deposit-money">00</span></p>
+          </div>
+          <div class="info-body" id="total-amount">
+            <h3>Total Amount</h3>
+            <p>$ <span id="total-money">1200</span></p>
+          </div>
+          <div class="info-body" id="withdraw-amount">
+            <h3>Withdraw Amount</h3>
+            <p>$ <span id="withdraw-money">00</span></p>
+          </div>
+        </article>
+        <article class="transaction-status">
+          <div class="transaction-body">
+            <input
+              type="text"
+              id="deposit-input"
+              class="input"
+              placeholder="$00"
+            />
+            <button type="submit" class="button" id="deposit-btn">
+              Deposit
+            </button>
+          </div>
+          <div class="transaction-body">
+            <input
+              type="text"
+              id="withdraw-input"
+              class="input"
+              placeholder="$00"
+            />
+            <button type="submit" class="button" id="withdraw-btn">
+              Withdraw
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

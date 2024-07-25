@@ -1,0 +1,137 @@
+*,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  scroll-behavior: smooth;
+  width: 100%;
+  height: 100vh;
+}
+
+.parent-div {
+  width: 70%;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.authentication-area .input-auth {
+  border: none;
+  border: 1px solid gray;
+  border-radius: 6px;
+  outline: none;
+  width: 25rem;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.authentication-area #submit {
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  background-color: green;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.authentication-area #submit:hover {
+  background-color: rgb(3, 85, 3);
+}
+
+.transaction-area {
+  display: none;
+}
+
+.parent-div h1 {
+  font-size: 4rem;
+  margin-bottom: 5rem;
+}
+
+.parent-div .account-details {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.account-details .info-body {
+  color: white;
+  width: 16rem;
+  padding: 2rem 1rem;
+  border-radius: 8px;
+}
+
+.account-details .info-body h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.account-details .info-body p {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.account-details .info-body p span {
+  font-size: 2rem;
+}
+
+#deposit-amount {
+  background-color: orangered;
+}
+
+#total-amount {
+  background-color: blue;
+}
+
+#withdraw-amount {
+  background-color: darkgreen;
+}
+
+.transaction-status {
+  margin-top: 10rem;
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+}
+
+.transaction-body {
+  padding: 1rem 0.8rem;
+  box-shadow: 2px 2px 5px gray;
+  border-radius: 6px;
+}
+
+.transaction-body .input {
+  border: none;
+  outline: none;
+  width: 8rem;
+  padding: 1rem;
+  outline: 1px solid gray;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.transaction-body .button {
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  background-color: green;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.transaction-body .button:hover {
+  background-color: rgb(3, 85, 3);
+}
