@@ -18,6 +18,6 @@ function debounce(fn, delay) {
 button.addEventListener(
   "click",
   debounce(function () {
-    console.log("clicked"); // now we can click one time on the button
+    console.log("clicked"); // now we can't click more than one time on the button
   }, 500)
 );
