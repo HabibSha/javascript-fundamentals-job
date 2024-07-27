@@ -17,7 +17,7 @@ function memo(func) {
     if (cache[x]) {
       // cache[x] - object's key.
       console.log("result from cache");
-      return cache[x]; // that means the result is stored from before calling the function
+      return cache[x]; // that means the result is stored before calling the function
     } else {
       console.log("calculating result");
       const result = func(x); // func(x) - add(x) which will be calculate the result. if the result is not stored in cache.
@@ -43,7 +43,7 @@ function add(...x) {
 function memo(func) {
   let cache = {};
   return function (...x) {
-    // console.log(cache);
+    console.log(cache);
     const key = JSON.stringify(x);
 
     if (cache[key]) {
