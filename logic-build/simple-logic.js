@@ -188,28 +188,28 @@ function multiplyNumbers(...nums) {
 
 // console.log(multiplyNumbers(10, 20, 30));
 
-function memoFunc(func) {
-  let cache = {};
+// function memoFunc(func) {
+//   let cache = {};
 
-  return function (...x) {
-    const key = JSON.stringify(x);
-    console.log(cache);
+//   return function (...x) {
+//     const key = JSON.stringify(x);
+//     console.log(cache);
 
-    if (cache[key]) {
-      console.log("Result from cache");
-      return cache[key];
-    } else {
-      console.log("Calculating the result");
-      const result = func(...x);
-      cache[key] = result;
-      return result;
-    }
-  };
-}
+//     if (cache[key]) {
+//       console.log("Result from cache");
+//       return cache[key];
+//     } else {
+//       console.log("Calculating the result");
+//       const result = func(...x);
+//       cache[key] = result;
+//       return result;
+//     }
+//   };
+// }
 
-const calculate2 = memoFunc(multiplyNumbers);
-console.log(calculate2(5, 2, 6));
-console.log(calculate2(5, 2, 6));
+// const calculate2 = memoFunc(multiplyNumbers);
+// console.log(calculate2(5, 2, 6));
+// console.log(calculate2(5, 2, 6));
 
 // reverse string
 const strName = "Bangladesh";
