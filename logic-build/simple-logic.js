@@ -212,7 +212,12 @@ function multiplyNumbers(...nums) {
 // console.log(calculate2(5, 2, 6));
 
 // reverse string
+// const strName = "Bangladesh";
+// const divide = strName.split("");
+// const result = divide.reverse();
+// console.log(result.join(""));
+
+//
 const strName = "Bangladesh";
 const divide = strName.split("");
-const result = divide.reverse();
-console.log(result.join(""));
+divide.map((alp) => console.log(alp));
