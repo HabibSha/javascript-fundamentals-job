@@ -218,6 +218,13 @@ function multiplyNumbers(...nums) {
 // console.log(result.join(""));
 
 //
-const strName = "Bangladesh";
-const divide = strName.split("");
-divide.map((alp) => console.log(alp));
+// const strName = "Bangladesh";
+// const divide = strName.split("");
+// divide.map((alp) => console.log(alp));
+
+// string rotation - (The result will more exact if we print it to the display. we can use dom).
+let text = "Bangladesh";
+setInterval(() => {
+  text = text[text.length - 1] + text.substring(0, text.length - 1);
+  console.log(text);
+}, 100);
